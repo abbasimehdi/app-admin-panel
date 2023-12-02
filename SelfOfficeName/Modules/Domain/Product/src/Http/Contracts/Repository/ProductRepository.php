@@ -7,6 +7,9 @@ use Selfofficename\Modules\Domain\Product\Models\Product;
 
 class ProductRepository extends BaseRepository
 {
+    /**
+     * @return mixed
+     */
     public function model(): mixed
     {
         return Product::class;

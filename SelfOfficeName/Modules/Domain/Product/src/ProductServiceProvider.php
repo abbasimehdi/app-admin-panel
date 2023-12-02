@@ -4,6 +4,7 @@ namespace Selfofficename\Modules\Domain\Product;
 
 use Carbon\Laravel\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Selfofficename\Modules\Domain\Product\Console\Commands\FireCommand;
 use Selfofficename\Modules\Domain\Product\Models\Schemas\Constants\ProductConstants;
 
 class ProductServiceProvider extends ServiceProvider
@@ -15,6 +16,7 @@ class ProductServiceProvider extends ServiceProvider
     {
         $this->routeRegister();
         $this->loadMigrationsFrom(__DIR__.ProductConstants::MIGRATION_ROUTE);
+        $this->commands([FireCommand::class]);
     }
 
     /**

@@ -3,9 +3,7 @@
 namespace Selfofficename\Modules\Domain\Product\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Selfofficename\Modules\Core\Http\Resources\BaseListCollection;
 use Selfofficename\Modules\Domain\Product\Http\Contracts\Repository\ProductInterface;
-use Selfofficename\Modules\Domain\Product\Models\Product;
 use Selfofficename\Modules\InfraStructure\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -40,7 +38,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->productRepositoryInterface->store($request->post());
+        return $this->productRepositoryInterface->store($request->all());
     }
 
     /**

@@ -4,9 +4,8 @@ namespace Selfofficename\Modules\InfraStructure\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
-use Selfofficename\Modules\Core\Http\Services\ProductService;
 use Selfofficename\Modules\Domain\Product\Http\Contracts\Repository\ProductInterface;
-use Selfofficename\Modules\Domain\Product\Http\Contracts\Repository\ProductRepository;
+use Selfofficename\Modules\Domain\Product\Services\ProductService;
 
 class AppServiceProvider extends ServiceProvider
 {

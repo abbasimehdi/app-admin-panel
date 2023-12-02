@@ -41,17 +41,6 @@
       0 => 'Termwind\\Laravel\\TermwindServiceProvider',
     ),
   ),
-  'nwidart/laravel-modules' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Nwidart\\Modules\\LaravelModulesServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Module' => 'Nwidart\\Modules\\Facades\\Module',
-    ),
-  ),
   'spatie/laravel-ignition' => 
   array (
     'providers' => 
@@ -61,6 +50,13 @@
     'aliases' => 
     array (
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
+    ),
+  ),
+  'vladimir-yuldashev/laravel-queue-rabbitmq' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'VladimirYuldashev\\LaravelQueueRabbitMQ\\LaravelQueueRabbitMQServiceProvider',
     ),
   ),
 );

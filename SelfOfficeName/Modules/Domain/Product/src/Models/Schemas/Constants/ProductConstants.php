@@ -9,4 +9,5 @@ class ProductConstants
     const OPERATION = 'operation';
     const CONTROLLER_ROUTE = 'Selfofficename\Modules\Domain\Product\Http\Controllers';
     const MIGRATION_ROUTE = '/database/migrations';
+    const PATH = 'assets/images/';
 }

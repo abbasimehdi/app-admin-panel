@@ -15,26 +15,64 @@
 <body style="background: black; color: aliceblue">
 
 <div class="container">
-    <button class="btn btn-success" onclick="myFunction()">create product</button>
-    <div class="col-md-3 mx-auto"  id="myDIV">
-        <h2>Product Form</h2>
-    <form
-        action=""
-        method="post"
-        enctype="multipart/form-data"
-    >
-        <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
+{{--    <button class="btn btn-success" onclick="myFunction()">create product</button>--}}
+{{--    <div class="col-md-3 mx-auto"  id="myDIV">--}}
+{{--        <h2>Product Form</h2>--}}
+{{--    <form--}}
+{{--        action="{{ url('api/v1/admin/product') }}"--}}
+{{--        method="post"--}}
+{{--        enctype="multipart/form-data"--}}
+{{--    >--}}
+{{--        <div class="form-group">--}}
+{{--            <label for="title">Title:</label>--}}
+{{--            <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">--}}
+{{--        </div>--}}
+{{--        <div class="form-group">--}}
+{{--            <label for="image">Image:</label>--}}
+{{--            <input type="file" class="form-control" id="image" placeholder="Enter image" name="image">--}}
+{{--        </div>--}}
+{{--        <div class="form-group">--}}
+{{--            <button type="submit" class="btn btn-success">save</button>--}}
+{{--        </div>--}}
+{{--    </form>--}}
+{{--    </div>--}}
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        {{ __('Create Product') }}
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-dark" id="exampleModalLabel">{{ __('Create Product') }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form
+                    action="{{ url('api/v1/admin/product') }}"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <div class="modal-body">
+                            @csrf
+                            <div class="form-group">
+                                <label for="title">{{ __('Title') }}:</label>
+                                <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">{{ __('Image') }}:</label>
+                                <input type="file" class="form-control" id="image" placeholder="Enter image" name="image">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                        <button type="submit" class="btn btn-success">{{ __('Save') }}</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="file" class="form-control" id="image" placeholder="Enter image" name="image">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-success">save</button>
-        </div>
-    </form>
     </div>
 </div>
 <div class="container">
@@ -46,6 +84,7 @@
             <th>order</th>
             <th>title</th>
             <th>image</th>
+            <th>created at</th>
             <th>operation</th>
         </tr>
         </thead>
@@ -57,8 +96,11 @@
                         <td>{{ $i }}</td>
                         <td>{{ $product->title }}</td>
                         <td>
-                            <img src="{{ $product->image }}" alt="image" width="100px" height="100px">
+                            <img
+                                src='{{ asset($product->image) }}'
+                                width="50" height="50" alt="image">
                         </td>
+                        <td>{{ $product->created_at }}</td>
                         <td>
                             <button class="btn btn-warning">edit</button>
                             <button class="btn btn-danger">remove</button>
@@ -83,6 +125,10 @@
 </div>
 
 <script>
+    myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+    })
+
     function myFunction() {
         var element = document.getElementById("myDIV");
         element.classList.toggle("mystyle");

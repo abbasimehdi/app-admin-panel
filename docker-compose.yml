@@ -17,6 +17,8 @@ services:
         volumes:
             - ./:/var/www
             - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        depends_on:
+            - rabbitmq
         networks:
             - app-network
 
@@ -62,10 +64,15 @@ services:
             - app-network
 
     rabbitmq:
-        image: rabbitmq:3.9-management-alpine
+        container_name: "rabbitmq"
+        hostname: rabbit
+        image: rabbitmq:3.8-management
+        environment:
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=guest
         ports:
-            - "5672:5672"
-            - "15672:15672"
+            - '5672:5672'
+            - '15672:15672'
 
 #Docker Networks
 networks:
