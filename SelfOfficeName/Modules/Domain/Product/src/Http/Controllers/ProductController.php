@@ -4,6 +4,7 @@ namespace Selfofficename\Modules\Domain\Product\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Selfofficename\Modules\Domain\Product\Http\Contracts\Repository\ProductInterface;
+use Selfofficename\Modules\Domain\Product\Jobs\ProductCreated;
 use Selfofficename\Modules\InfraStructure\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -38,7 +39,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->productRepositoryInterface->store($request->all());
+         ProductCreated::dispatch(
+             (
+             json_decode(
+                 $this->productRepositoryInterface->store($request->all())->content(), true
+             )
+             )['data']
+         )->onQueue('main_queue');
     }
 
     /**
