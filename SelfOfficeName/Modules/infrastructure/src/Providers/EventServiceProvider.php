@@ -5,7 +5,7 @@ namespace Selfofficename\Modules\InfraStructure\Providers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Selfofficename\Modules\Domain\Product\Jobs\Testjob;
+use Selfofficename\Modules\Domain\Product\Jobs\ProductLiked;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -25,7 +25,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->bindMethod(Testjob::class. '@handle', fn($job) => $job->handle());
+        $this->app->bindMethod(ProductLiked::class. '@handle', fn($job) => $job->handle());
     }
 
     /**
