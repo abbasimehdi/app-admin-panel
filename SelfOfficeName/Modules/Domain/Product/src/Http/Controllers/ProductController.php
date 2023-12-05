@@ -4,6 +4,7 @@ namespace Selfofficename\Modules\Domain\Product\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Selfofficename\Modules\Domain\Product\Http\Contracts\Repository\ProductInterface;
+use Selfofficename\Modules\Domain\Product\Http\Requests\ProductRequest;
 use Selfofficename\Modules\Domain\Product\Jobs\ProductCreated;
 use Selfofficename\Modules\InfraStructure\Http\Controllers\Controller;
 
@@ -37,7 +38,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
          ProductCreated::dispatch(
              (
